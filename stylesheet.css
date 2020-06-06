@@ -1,0 +1,31 @@
+.mainContent {
+    text-align: center;
+    background-color: aliceblue;
+    padding: 0 auto;
+    margin: 200px;
+}
+
+h1 {
+    margin: 100px;
+}
+
+.button {
+    text-align: center;
+    background-color: brown;
+    color: white;
+}
+
+.boxContent {
+background-color: thistle;
+
+}
+
+
+h2 {
+    margin-bottom: 0px;
+}
+
+.password {
+    padding: 150px, 200px;
+    font-size: xx-large;
+}

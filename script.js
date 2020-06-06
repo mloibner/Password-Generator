@@ -2,12 +2,16 @@
 const generateBtn = document.querySelector('#generate');
 
 //This writes the password to the #password input in HTML
-//function writePassword() {
-  //let password = generatePassword();
-  //let passwordText = document.querySelector('#password');
+function writePassword() {
+  let password = generatePassword();
+  let passwordText = document.querySelector('#password');
 
-  //passwordText.value = password;
-//}
+  passwordText.value = password;
+}
+
+
+// Add event listener to generate button
+//generateBtn.addEventListener('click', writePassword);
 
 const randomFunc = {
   lower: getRandomLower,
@@ -17,27 +21,66 @@ const randomFunc = {
 };
 
 //when button clicked - send alert to intro 
-generateBtn.addEventListener('click', function(){
+if (generateBtn.addEventListener('click', )) {
   alert('You are about to select the criteria for your password.')
-  let lcase = prompt ('Would you like lowercase letters? (y/n)');
+  let lcase = confirm ('Would you like lowercase letters? (y/n)');
   console.log(lcase);
-  let uCase = prompt ('Would you like uppercase letters? (y/n)');
+  let uCase = confirm ('Would you like uppercase letters? (y/n)');
   console.log(uCase);
-  let num = prompt ('Would you like numerals? (y/n)');
+  let num = confirm ('Would you like numerals? (y/n)');
   console.log(num);
-  let specChar = prompt ('Would you like special characters? (y/n)');
+  let specChar = confirm ('Would you like special characters? (y/n)');
   console.log(specChar);
   let pwLength = prompt ('Please select character length of your password between 8 to 128.');
   console.log(pwLength);  
-});
+};
 
-//This takes the above perameters and converts to the random password
+//Event Listeners - Password Criteria
 generateBtn.addEventListener('click', () => {
-  const length = (Number(pwLength.value));
+  const length = +pwLength.value;
+  const hasLower = lcase.checked;
+  const hasUpper = uCase.checked;
+  const hasNumbers = num.checked;
+  const hasSymbols = specChar.checked;
 
-  console.log(length)
+  generatePassword(length, hasLower, hasNumbers, hasSymbols, hasUpper)
 })
 
+
+//Generate Password function
+function generatePassword(lower, upper, number, symbol, length) {
+//1. Init pw var
+//2. Filter out unchecked types
+//3. Loop over length call generator function for each type
+//4. Add final password to the pw var and return
+
+let generatedPassword = '';
+
+const typesCount = lower + upper + number + symbol;
+
+console.log("typesCount: ", typesCount);
+
+const typesArr = [{lower}, {upper}, {number}, {symbol}].filter
+(item => Object.values(item)[0]
+);
+
+console.log("typesArr: ", typesArr);
+
+if(typesCount === 0) {
+  return '';
+
+}
+
+for(let i=0; i < length; i += typesCount) {
+  typesArr.forEach(type=> {
+    const funcName = Object.keys(type)[0];
+
+    generatedPassword += randomFunc [funcName]();
+  })
+}
+console.log(generatedPassword);
+
+}
 
 
 //Generator functions
@@ -67,8 +110,7 @@ function getRandomSymbol() {
 
 
 
-// Add event listener to generate button
-//generateBtn.addEventListener('click', writePassword);
+
 
 
 

@@ -2,53 +2,19 @@
 const generateBtn = document.querySelector('#generate');
 
 //This writes the password to the #password input in HTML
-function writePassword() {
-  let password = generatePassword();
-  let passwordText = document.querySelector('#password');
+//function writePassword() {
+  //let password = generatePassword();
+  //let passwordText = document.querySelector('#password');
 
-  passwordText.value = password;
-}
+  //passwordText.value = password;
+//}
 
-//Generator functions
-
-function getRandomLower() {
-
-
-}
-
-console.log(string.fromCharCode(97))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-let values = ["abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ","1234567890","/*-+!@#$%^&*_`~"]
-
-function generatePassword(){
-  let userselection = '';
-  for(var i = 0; i <= userselection; i++) {
-    userselection = userselection + values.charAt(Math.floor(Math.random() * Math.floor(value.pwLength-1)));
-  }
-}
-
-
-// Add event listener to generate button
-generateBtn.addEventListener('click', writePassword);
-
-
+const randomFunc = {
+  lower: getRandomLower,
+  upper: getRandomUpper,
+  number: getRandomNumber,
+  symbol: getRandomSymbol
+};
 
 //when button clicked - send alert to intro 
 generateBtn.addEventListener('click', function(){
@@ -63,8 +29,50 @@ generateBtn.addEventListener('click', function(){
   console.log(specChar);
   let pwLength = prompt ('Please select character length of your password between 8 to 128.');
   console.log(pwLength);  
+});
+
+//This takes the above perameters and converts to the random password
+generateBtn.addEventListener('click', () => {
+  const length = (Number(pwLength.value));
+
+  console.log(length)
 })
-//prompt user for password criteria
+
+
+
+//Generator functions
+
+function getRandomLower() {
+return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+
+}
+
+function getRandomUpper() {
+  return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+  
+  }
+
+  function getRandomNumber() {
+    return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
+    
+    }
+
+function getRandomSymbol() {
+    const symbols = '!@#$%^&*_~`/?><'
+    return symbols [Math.floor(Math.random() * symbols.length)];
+      
+}
+
+
+
+
+
+// Add event listener to generate button
+//generateBtn.addEventListener('click', writePassword);
+
+
+
+
 
 
   

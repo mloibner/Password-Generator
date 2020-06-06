@@ -2,11 +2,24 @@
 const generateBtn = document.querySelector('#generate');
 
 
+let lcase = confirm ('Would you like lowercase letters? (y/n)');
+console.log(lcase);
+let uCase = confirm ('Would you like uppercase letters? (y/n)');
+console.log(uCase);
+let num = confirm ('Would you like numerals? (y/n)');
+console.log(num);
+let specChar = confirm ('Would you like special characters? (y/n)');
+console.log(specChar);
+let pwLength = prompt ('Please select character length of your password between 8 to 128.');
+console.log(pwLength); 
+
+
+
+
 //This writes the password to the #password input in HTML
 function writePassword() {
   let password = generatePassword();
   let passwordText = document.querySelector('#password');
-
   passwordText.value = password;
 }
 
@@ -22,26 +35,9 @@ const randomFunc = {
   symbol: getRandomSymbol
 };
 
-
-//when button clicked - send alert to intro 
-if (generateBtn.addEventListener('click', )) {
-  alert('You are about to select the criteria for your password.')
-  let lcase = confirm ('Would you like lowercase letters? (y/n)');
-  console.log(lcase);
-  let uCase = confirm ('Would you like uppercase letters? (y/n)');
-  console.log(uCase);
-  let num = confirm ('Would you like numerals? (y/n)');
-  console.log(num);
-  let specChar = confirm ('Would you like special characters? (y/n)');
-  console.log(specChar);
-  let pwLength = prompt ('Please select character length of your password between 8 to 128.');
-  console.log(pwLength);  
-};
-
-
 //Event Listeners - Password Criteria
-generateBtn.addEventListener('click', () => {
-  const length = +pwLength.value;
+generateBtn.addEventListener('click', (lcase, uCase, num, specChar, pwLength) => {
+  const length = + pwLength.value;
   const hasLower = lcase.checked;
   const hasUpper = uCase.checked;
   const hasNumbers = num.checked;

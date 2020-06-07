@@ -2,8 +2,8 @@
 const generateBtn = document.querySelector('#generate');
 let passwordText = document.querySelector('#password')
 
-const lowerCase = arrayFromLowToHigh(65, 90)
-const upperCase = arrayFromLowToHigh(97, 122)
+const upperCase = arrayFromLowToHigh(65, 90)
+const lowerCase = arrayFromLowToHigh(97, 122)
 const numberCase = arrayFromLowToHigh(48, 57)
 const symbolCase = arrayFromLowToHigh(33, 47).concat(
   arrayFromLowToHigh(58, 64).concat(
@@ -16,27 +16,24 @@ const symbolCase = arrayFromLowToHigh(33, 47).concat(
 generateBtn.addEventListener('click', e => {
   e.preventDefault()
 
-  let lcase = confirm('Would you like lowercase letters? (y/n')
   let uCase = confirm ('Would you like uppercase letters? (y/n)');
   let num = confirm ('Would you like numerals? (y/n)');
   let specChar = confirm ('Would you like special characters? (y/n)');
   let pwLength = prompt ("Choose password length between 8 and 128");
   
   const length =  +pwLength;
-  const hasLower = lcase;
   const hasUpper = uCase;
   const hasNumbers = num;
   const hasSymbols = specChar;
 
-  const password = generatePassword(length, hasNumbers, hasSymbols, hasUpper, hasLower);
+  const password = generatePassword(length, hasNumbers, hasSymbols, hasUpper);
   passwordText.innerHTML = password
  
 });
 
-function generatePassword(length, hasLower, hasNumbers, hasSymbols, hasUpper){
+function generatePassword(length, hasNumbers, hasSymbols, hasUpper){
 
   let charCodes = lowerCase
-  if(hasLower) charCodes = charCodes.concat(lowerCase)
   if(hasUpper) charCodes = charCodes.concat(upperCase)
   if(hasNumbers) charCodes = charCodes.concat(numberCase)
   if(hasSymbols) charCodes = charCodes.concat(symbolCase)
